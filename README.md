@@ -1,5 +1,20 @@
 # perl-insert-package README
 
+## Features
+
+Insert `package` declaration for Perl automatically with single command.
+
+![screenshot](https://i.gyazo.com/f10ab2eef6c06f0ff2f68aa7a9e91597.gif)
+
+## Requirements
+
+You can use this extension without any dependency.
+VS Code is only required.
+
+## Extension Settings
+
+None
+
 <!--
 This is the README for your extension "perl-insert-package". After writing up a brief description, we recommend including the following sections.
 
