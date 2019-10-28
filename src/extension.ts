@@ -28,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 	
 		const relativePath = currentFileRelativePath(editor);
 		if (relativePath === undefined) {
-			vscode.window.showInformationMessage('please open perl file');
+			vscode.window.showErrorMessage('please open perl file');
 			return;
 		}
 
