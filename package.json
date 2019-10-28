@@ -9,7 +9,7 @@
 		"vscode": "^1.39.0"
 	},
 	"categories": [
-		"Other"
+		"Programming Languages"
 	],
 	"activationEvents": [
 		"onCommand:extension.insertPackageDecl"
