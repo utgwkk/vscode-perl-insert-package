@@ -20,12 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('perl-insert-package.insertPackageDecl', () => {
-		// The code you place here will be executed every time your command is executed
-		const editor = vscode.window.activeTextEditor;
-		if (editor === undefined)
-			return undefined;
-	
+	let disposable = vscode.commands.registerTextEditorCommand('perl-insert-package.insertPackageDecl', (editor, editBuilder) => {
 		const relativePath = currentFileRelativePath(editor);
 		if (relativePath === undefined) {
 			vscode.window.showErrorMessage('please open perl file');
@@ -33,10 +28,8 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 
 		const packageDecl = makePackageDeclaration(relativePath);
-		editor.edit(builder => {
-			editor.selections.forEach(selection => {
-				builder.insert(selection.start, packageDecl);
-			});
+		editor.selections.forEach(selection => {
+			editBuilder.insert(selection.start, packageDecl);
 		});
 	});
 
