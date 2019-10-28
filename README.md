@@ -4,7 +4,7 @@
 
 Insert `package` declaration for Perl automatically with single command.
 
-![screenshot](https://i.gyazo.com/f10ab2eef6c06f0ff2f68aa7a9e91597.gif)
+![screenshot](https://i.gyazo.com/32c4dfcf6ec3bf3a39530fa35b6cab66.gif)
 
 ## Requirements
 
