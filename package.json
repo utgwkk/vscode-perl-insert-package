@@ -19,7 +19,7 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.insertPackageDecl",
+				"command": "perl-insert-package.insertPackageDecl",
 				"title": "Perl: Insert package declaration"
 			}
 		]
