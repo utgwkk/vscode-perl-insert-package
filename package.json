@@ -3,6 +3,7 @@
 	"displayName": "vscode-perl-insert-package",
 	"description": "Insert package declaration for Perl",
 	"version": "0.0.1",
+	"publisher": "utgwkk",
 	"engines": {
 		"vscode": "^1.39.0"
 	},
