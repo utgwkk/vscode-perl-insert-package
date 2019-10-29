@@ -19,4 +19,26 @@ VS Code is only required.
 
 ## Extension Settings
 
-None
+### `perl-insert-package.replaceRules`
+
+An array representing replace rules from file path to Perl package name.
+
+Each rule consists of two or three parameters:
+
+#### `before`
+
+A rule of target Perl file path.
+`{{name}}` is a placeholder of Perl file name that will be converted into package name.
+
+eg: `"lib/{{name}}.pm"`
+
+#### `after`
+
+A conversion destination from file path to package name.
+`{{package}}` is a placeholder of package name, that is, `{{name}}` whose separators are replaced into `::`.
+
+eg: `"{{package}}"`
+
+#### `separator`
+
+A delimiter that is converted to `::`. If omitted, default value `/` is used.
