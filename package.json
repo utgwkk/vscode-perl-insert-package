@@ -22,7 +22,21 @@
 				"command": "perl-insert-package.insertPackageDecl",
 				"title": "Perl: Insert package declaration"
 			}
-		]
+		],
+		"configuration": {
+			"title": "Perl insert package",
+			"properties": {
+				"perl-insert-package.replaceRules": {
+					"type": "array",
+					"default": [{
+						"before": "lib/{{name}}.pm",
+						"after": "{{package}}",
+						"separator": "/"
+					}],
+					"descrption": "Translation rules from file path to Perl package."
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
