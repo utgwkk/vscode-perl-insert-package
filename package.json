@@ -1,5 +1,5 @@
 {
-	"name": "vscode-perl-insert-package",
+	"name": "perl-insert-package",
 	"displayName": "Perl insert package",
 	"description": "Insert package declaration for Perl",
 	"version": "1.6.0",
