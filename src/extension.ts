@@ -9,8 +9,12 @@ function currentFileRelativePath(editor: vscode.TextEditor): string {
 	return relativePath;
 }
 
+function makePackageName(path: string): string {
+	return path.replace('.pm', '').replace('lib/', '').replace(/\//g, '::');
+}
+
 function makePackageDeclaration(path: string): string {
-	const packageName = path.replace('.pm', '').replace('lib/', '').replace(/\//g, '::');
+	const packageName = makePackageName(path);
 	return `package ${packageName};`;
 }
 
