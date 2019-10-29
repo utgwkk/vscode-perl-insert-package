@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
 
 const namePlaceholder = '{{name}}';
 const packagePlaceholder = '{{package}}';
@@ -12,7 +13,7 @@ interface ReplaceRule {
 const defaultReplaceRule: ReplaceRule = {
 	before: `lib/${namePlaceholder}.pm`,
 	after: packagePlaceholder,
-	separator: '/',
+	separator: path.sep,
 };
 
 function loadReplaceRulesFromConfig(): ReplaceRule[] {
