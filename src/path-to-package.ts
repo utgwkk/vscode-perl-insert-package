@@ -11,7 +11,7 @@ interface ReplaceRule {
 }
 
 const defaultReplaceRule: ReplaceRule = {
-	before: `lib/${namePlaceholder}.pm`,
+	before: `lib${path.sep}${namePlaceholder}.pm`,
 	after: packagePlaceholder,
 	separator: path.sep,
 };
