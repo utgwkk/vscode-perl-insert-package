@@ -2,7 +2,7 @@
 	"name": "perl-insert-package",
 	"displayName": "Perl insert package",
 	"description": "Insert package declaration for Perl",
-	"version": "1.3.0",
+	"version": "1.4.0",
 	"publisher": "utgwkk",
 	"repository": "https://github.com/utgwkk/vscode-perl-insert-package",
 	"icon": "icon.png",
