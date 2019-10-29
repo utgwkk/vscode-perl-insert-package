@@ -17,6 +17,18 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "perl-insert-package.insertPackageDecl",
+					"when": "editorLangId == perl"
+				},
+				{
+					"command": "perl-insert-package.insertPackageName",
+					"when": "editorLangId == perl"
+				}
+			]
+		},
 		"commands": [
 			{
 				"command": "perl-insert-package.insertPackageDecl",
