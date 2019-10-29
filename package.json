@@ -21,6 +21,10 @@
 			{
 				"command": "perl-insert-package.insertPackageDecl",
 				"title": "Perl: Insert package declaration"
+			},
+			{
+				"command": "perl-insert-package.insertPackageName",
+				"title": "Perl: Insert package name from ..."
 			}
 		],
 		"configuration": {
