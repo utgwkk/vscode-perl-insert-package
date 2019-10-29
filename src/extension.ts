@@ -31,13 +31,31 @@ function insertPackageDecl(editor: vscode.TextEditor, editBuilder: vscode.TextEd
 	});
 }
 
+const packageDeclCompletionProvider = {
+	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
+		const editor = vscode.window.activeTextEditor;
+		if (editor === undefined) {
+			return [];
+		}
+
+		const relativePath = currentFileRelativePath(editor);
+		if (relativePath === undefined) {
+			vscode.window.showErrorMessage('please open perl file');
+			return;
+		}
+
+		const packageDecl = makePackageDeclaration(relativePath);
+		return [new vscode.CompletionItem(packageDecl)];
+	}
+};
+
+const perlSelector = { scheme: 'file', language: 'perl' };
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
 	const disposables = [
+		vscode.languages.registerCompletionItemProvider(perlSelector, packageDeclCompletionProvider, 'packagedecl'),
 		vscode.commands.registerTextEditorCommand('perl-insert-package.insertPackageDecl', insertPackageDecl),
 	];
 
