@@ -23,8 +23,8 @@ function loadReplaceRulesFromConfig(): ReplaceRule[] {
 	return rules === undefined ? [defaultReplaceRule] : rules;
 }
 
-function applyReplaceRule(path: string, rule: ReplaceRule): string {
-	const separator = rule.separator === undefined ? '/' : rule.separator;
+function applyReplaceRule(filePath: string, rule: ReplaceRule): string {
+	const separator = rule.separator === undefined ? path.sep : rule.separator;
 	const separatorRegex = new RegExp(separator, 'g');
 
 	const namePlaceholderRegex = new RegExp(namePlaceholder, 'g');
@@ -33,7 +33,7 @@ function applyReplaceRule(path: string, rule: ReplaceRule): string {
 	const packagePlaceholderRegex = new RegExp(packagePlaceholder, 'g');
 	const after = rule.after.replace(packagePlaceholderRegex, '$1');
 
-	return before.test(path) ? path.replace(before, after).replace(separatorRegex, '::') : path;
+	return before.test(filePath) ? filePath.replace(before, after).replace(separatorRegex, '::') : filePath;
 }
 
 function applyReplaceRules(path: string, rules: ReplaceRule[]): string {
