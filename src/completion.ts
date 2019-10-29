@@ -9,6 +9,11 @@ export const packageDeclCompletionProvider = {
 			return [];
 		}
 
+		const lineText = document.lineAt(position.line).text;
+		if (!/^packa/.test(lineText)) {
+			return [];
+		}
+
 		const relativePath = currentFileRelativePath(editor);
 		if (relativePath === undefined) {
 			vscode.window.showErrorMessage('please open perl file');
