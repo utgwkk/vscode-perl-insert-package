@@ -46,7 +46,7 @@
 					"type": "array",
 					"default": [
 						{
-							"before": "lib/{{name}}.pm",
+							"before": "^lib/{{name}}\\.pm",
 							"after": "{{package}}",
 							"separator": "/"
 						}
