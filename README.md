@@ -14,7 +14,7 @@
 
 ### Insert package name for Perl with QuickPick
 
-![insert package name](https://i.gyazo.com/7fddd03410db542422abfc09a82ced31.gif)
+![insert package name](https://i.gyazo.com/b47345d53a0a142582e3f174a73235fe.gif)
 
 ## Requirements
 

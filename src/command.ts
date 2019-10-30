@@ -24,7 +24,7 @@ export async function refreshPerlFileList() {
 		const relativePath = vscode.workspace.asRelativePath(url);
 		return {
 			label: relativePath,
-			description: relativePath.replace(new RegExp(path.sep, 'g'), ' ').replace('.pm', ''),
+			description: makePackageName(relativePath),
 		};
 	});
 }
