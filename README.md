@@ -2,15 +2,19 @@
 
 ## Features
 
-Insert `package` declaration for Perl
+### Insert `package` declaration for Perl
 
-### Completion
+#### Completion
 
 ![completion](https://i.gyazo.com/fb7fc83d4717aa8898b57af8110d82bc.gif)
 
-### Command
+#### Command
 
 ![screenshot](https://i.gyazo.com/32c4dfcf6ec3bf3a39530fa35b6cab66.gif)
+
+### Insert package name for Perl with QuickPick
+
+![insert package name](https://i.gyazo.com/7fddd03410db542422abfc09a82ced31.gif)
 
 ## Requirements
 
