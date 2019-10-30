@@ -16,14 +16,21 @@ export function insertPackageDecl(editor: vscode.TextEditor, editBuilder: vscode
 	});
 }
 
-export function insertPackageName() {
-	const files = vscode.workspace.findFiles('**/**.pm').then(urls => urls.map(url => {
+let cachedFiles: vscode.QuickPickItem[];
+
+export async function refreshPerlFileList() {
+	const urls = await vscode.workspace.findFiles('**/**.pm');
+	cachedFiles = urls.map(url => {
 		const relativePath = vscode.workspace.asRelativePath(url);
 		return {
 			label: relativePath,
 			description: relativePath.replace(new RegExp(path.sep, 'g'), ' ').replace('.pm', ''),
 		};
-	}));
+	});
+}
+
+export function insertPackageName() {
+	const files = cachedFiles;
 	vscode.window.showQuickPick(files, { matchOnDescription: true }).then(selected => {
 		if (selected === undefined) {
 			return;
