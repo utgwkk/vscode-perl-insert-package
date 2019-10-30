@@ -31,7 +31,7 @@ Each rule consists of two or three parameters:
 
 #### `before`
 
-A rule of target Perl file path.
+A regular expression of target Perl file path.
 `{{name}}` is a placeholder of Perl file name that will be converted into package name.
 
 eg: `"^lib/{{name}}\\.pm"`
