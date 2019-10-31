@@ -21,6 +21,6 @@ export const packageDeclCompletionProvider = {
 		}
 
 		const packageDecl = makePackageDeclaration(relativePath);
-		return [new vscode.CompletionItem(packageDecl)];
+		return [new vscode.CompletionItem(packageDecl, vscode.CompletionItemKind.Module)];
 	}
 };
