@@ -29,22 +29,21 @@ export function insertCurrentPackageName(editor: vscode.TextEditor, editBuilder:
 	});
 }
 
-let cachedFiles: vscode.QuickPickItem[];
+let cachedFiles: vscode.Uri[];
 
 export async function refreshPerlFileList() {
-	const urls = await vscode.workspace.findFiles('**/**.pm');
-	cachedFiles = urls.map(url => {
+	return await vscode.workspace.findFiles('**/**.pm');
+}
+
+export function insertPackageName() {
+	const items = cachedFiles.map(url => {
 		const relativePath = vscode.workspace.asRelativePath(url);
 		return {
 			label: relativePath,
 			description: makePackageName(relativePath),
 		};
 	});
-}
-
-export function insertPackageName() {
-	const files = cachedFiles;
-	vscode.window.showQuickPick(files, { matchOnDescription: true }).then(selected => {
+	vscode.window.showQuickPick(items, { matchOnDescription: true }).then(selected => {
 		if (selected === undefined) {
 			return;
 		}
