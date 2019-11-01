@@ -26,6 +26,10 @@
 				{
 					"command": "perl-insert-package.insertPackageName",
 					"when": "editorLangId == perl"
+				},
+				{
+					"command": "perl-insert-package.insertCurrentPackageName",
+					"when": "editorLangId == perl"
 				}
 			]
 		},
@@ -37,6 +41,10 @@
 			{
 				"command": "perl-insert-package.insertPackageName",
 				"title": "Perl: Insert package name from ..."
+			},
+			{
+				"command": "perl-insert-package.insertCurrentPackageName",
+				"title": "Perl: Insert package name of current file"
 			}
 		],
 		"configuration": {

@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { insertPackageDecl, insertPackageName, refreshPerlFileList } from './command';
+import { insertPackageDecl, insertPackageName, insertCurrentPackageName, refreshPerlFileList } from './command';
 import { packageDeclCompletionProvider } from './completion';
 
 const perlSelector = { scheme: 'file', language: 'perl' };
@@ -18,6 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.languages.registerCompletionItemProvider(perlSelector, packageDeclCompletionProvider, 'packagedecl'),
 		vscode.commands.registerTextEditorCommand('perl-insert-package.insertPackageDecl', insertPackageDecl),
 		vscode.commands.registerCommand('perl-insert-package.insertPackageName', insertPackageName),
+		vscode.commands.registerTextEditorCommand('perl-insert-package.insertCurrentPackageName', insertCurrentPackageName),
 		fsWatcher,
 	];
 

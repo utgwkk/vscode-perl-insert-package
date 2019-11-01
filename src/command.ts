@@ -16,6 +16,19 @@ export function insertPackageDecl(editor: vscode.TextEditor, editBuilder: vscode
 	});
 }
 
+export function insertCurrentPackageName(editor: vscode.TextEditor, editBuilder: vscode.TextEditorEdit) {
+	const relativePath = currentFileRelativePath(editor);
+	if (relativePath === undefined) {
+		vscode.window.showErrorMessage('please open perl file');
+		return;
+	}
+
+	const packageName = makePackageName(relativePath);
+	editor.selections.forEach(selection => {
+		editBuilder.insert(selection.start, packageName);
+	});
+}
+
 let cachedFiles: vscode.QuickPickItem[];
 
 export async function refreshPerlFileList() {
