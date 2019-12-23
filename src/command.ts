@@ -39,6 +39,8 @@ export async function refreshPerlFileList() {
 	cachedFiles = await vscode.workspace.findFiles('**/**.pm');
 }
 
+const usePattern = /use\s+(?<packageName>([a-zA-Z0-9_]+)(::[a-zA-Z0-9_]+)+);/;
+
 export function insertPackageName() {
 	const items = getCachedFiles().map(url => {
 		const relativePath = vscode.workspace.asRelativePath(url);
@@ -47,12 +49,24 @@ export function insertPackageName() {
 			description: makePackageName(relativePath),
 		};
 	});
+	const editor = vscode.window.activeTextEditor;
+	if (editor === undefined) {
+		return;
+	}
+	const document = editor.document;
+	const usedPackages: string[] = document.getText().split('\n').filter(line => usePattern.test(line)).map(line => {
+		const m = line.match(usePattern);
+		if (m === null) {
+			return '';
+		}
+		return m.groups!.packageName;
+	});
+	stable.inplace(items, (_, b) => usedPackages.includes(makePackageName(b.label)));
 	vscode.window.showQuickPick(items, { matchOnDescription: true }).then(selected => {
 		if (selected === undefined) {
 			return;
 		}
 		const packagePath = selected.label;
-		const editor = vscode.window.activeTextEditor;
 		if (editor === undefined) {
 			vscode.window.showErrorMessage('please open perl file');
 			return;
