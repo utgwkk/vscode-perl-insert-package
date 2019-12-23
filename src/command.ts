@@ -33,7 +33,7 @@ export function insertCurrentPackageName(editor: vscode.TextEditor, editBuilder:
 let cachedFiles: vscode.Uri[];
 
 export async function refreshPerlFileList() {
-	return await vscode.workspace.findFiles('**/**.pm');
+	cachedFiles = await vscode.workspace.findFiles('**/**.pm');
 }
 
 export function insertPackageName() {
