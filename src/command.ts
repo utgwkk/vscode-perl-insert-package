@@ -31,12 +31,16 @@ export function insertCurrentPackageName(editor: vscode.TextEditor, editBuilder:
 
 let cachedFiles: vscode.Uri[];
 
+function getCachedFiles() {
+	return cachedFiles;
+}
+
 export async function refreshPerlFileList() {
 	cachedFiles = await vscode.workspace.findFiles('**/**.pm');
 }
 
 export function insertPackageName() {
-	const items = cachedFiles.map(url => {
+	const items = getCachedFiles().map(url => {
 		const relativePath = vscode.workspace.asRelativePath(url);
 		return {
 			label: relativePath,
