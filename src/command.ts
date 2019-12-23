@@ -1,4 +1,3 @@
-import * as path from 'path';
 import * as stable from "stable";
 import * as vscode from 'vscode';
 import { currentFileRelativePath } from './helper';
