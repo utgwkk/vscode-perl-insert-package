@@ -1,4 +1,5 @@
 import * as path from 'path';
+import * as stable from "stable";
 import * as vscode from 'vscode';
 import { currentFileRelativePath } from './helper';
 import { makePackageDeclaration, makePackageName } from './path-to-package';
@@ -60,5 +61,10 @@ export function insertPackageName() {
 				editBuilder.insert(selection.start, packageName);
 			});
 		});
+		sortCachedFilesByRecentlyUsed(packagePath);
 	});
+}
+
+function sortCachedFilesByRecentlyUsed(packagePath: string) {
+	stable.inplace(cachedFiles, (_, b) => vscode.workspace.asRelativePath(b) === packagePath);
 }
