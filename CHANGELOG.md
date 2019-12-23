@@ -4,6 +4,10 @@ All notable changes to the "perl-insert-package" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.9.0
+
+- Move used packages to the top of QuickPick. (new feature)
+
 ## 1.8.2
 
 - Add a changelog.
