@@ -3,7 +3,7 @@ import { currentFileRelativePath } from './helper';
 import { makePackageDeclaration } from './path-to-package';
 
 export const packageDeclCompletionProvider = {
-	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
+	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): vscode.CompletionItem[] | undefined {
 		const editor = vscode.window.activeTextEditor;
 		if (editor === undefined) {
 			return [];

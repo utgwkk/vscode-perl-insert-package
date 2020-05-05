@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 import { currentFileRelativePath } from './helper';
 import { makePackageDeclaration, makePackageName } from './path-to-package';
 
-export function insertPackageDecl(editor: vscode.TextEditor, editBuilder: vscode.TextEditorEdit) {
+export function insertPackageDecl(editor: vscode.TextEditor, editBuilder: vscode.TextEditorEdit): void {
 	const relativePath = currentFileRelativePath(editor);
 	if (relativePath === undefined) {
 		vscode.window.showErrorMessage('please open perl file');
@@ -16,7 +16,7 @@ export function insertPackageDecl(editor: vscode.TextEditor, editBuilder: vscode
 	});
 }
 
-export function insertCurrentPackageName(editor: vscode.TextEditor, editBuilder: vscode.TextEditorEdit) {
+export function insertCurrentPackageName(editor: vscode.TextEditor, editBuilder: vscode.TextEditorEdit): void {
 	const relativePath = currentFileRelativePath(editor);
 	if (relativePath === undefined) {
 		vscode.window.showErrorMessage('please open perl file');
@@ -31,17 +31,17 @@ export function insertCurrentPackageName(editor: vscode.TextEditor, editBuilder:
 
 let cachedFiles: vscode.Uri[];
 
-function getCachedFiles() {
+function getCachedFiles(): vscode.Uri[] {
 	return cachedFiles;
 }
 
-export async function refreshPerlFileList() {
+export async function refreshPerlFileList(): Promise<void> {
 	cachedFiles = await vscode.workspace.findFiles('**/**.pm');
 }
 
 const usePattern = /use\s+(?<packageName>([a-zA-Z0-9_]+)(::[a-zA-Z0-9_]+)+);/;
 
-export function insertPackageName() {
+export function insertPackageName(): void {
 	const items = getCachedFiles().map(url => {
 		const relativePath = vscode.workspace.asRelativePath(url);
 		return {
@@ -82,6 +82,6 @@ export function insertPackageName() {
 	});
 }
 
-function sortCachedFilesByRecentlyUsed(packagePath: string) {
+function sortCachedFilesByRecentlyUsed(packagePath: string): void {
 	stable.inplace(cachedFiles, (_, b) => vscode.workspace.asRelativePath(b) === packagePath);
 }
