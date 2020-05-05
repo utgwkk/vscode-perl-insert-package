@@ -39,6 +39,10 @@ export async function refreshPerlFileList(): Promise<void> {
 	cachedFiles = await vscode.workspace.findFiles('**/**.pm');
 }
 
+function sortCachedFilesByRecentlyUsed(packagePath: string): void {
+	stable.inplace(cachedFiles, (_, b) => vscode.workspace.asRelativePath(b) === packagePath);
+}
+
 const usePattern = /use\s+(?<packageName>([a-zA-Z0-9_]+)(::[a-zA-Z0-9_]+)+);/;
 
 export function insertPackageName(): void {
@@ -80,8 +84,4 @@ export function insertPackageName(): void {
 		});
 		sortCachedFilesByRecentlyUsed(packagePath);
 	});
-}
-
-function sortCachedFilesByRecentlyUsed(packagePath: string): void {
-	stable.inplace(cachedFiles, (_, b) => vscode.workspace.asRelativePath(b) === packagePath);
 }
