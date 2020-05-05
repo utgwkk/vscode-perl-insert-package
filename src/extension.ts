@@ -11,8 +11,8 @@ const perlSelector = { scheme: 'file', language: 'perl' };
 export function activate(context: vscode.ExtensionContext): void {
 	refreshPerlFileList();
 	const fsWatcher = vscode.workspace.createFileSystemWatcher('**/**.pm', false, true, false);
-	fsWatcher.onDidCreate(_ => refreshPerlFileList());
-	fsWatcher.onDidDelete(_ => refreshPerlFileList());
+	fsWatcher.onDidCreate(() => refreshPerlFileList());
+	fsWatcher.onDidDelete(() => refreshPerlFileList());
 
 	const disposables = [
 		vscode.languages.registerCompletionItemProvider(perlSelector, packageDeclCompletionProvider, 'packagedecl'),
