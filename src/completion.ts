@@ -17,6 +17,11 @@ export const packageDeclCompletionProvider = {
 			return [];
 		}
 
+		const relativePath = currentFileRelativePath(editor);
+		if (this.alreadyHasPackageDeclaration(document, relativePath)) {
+			return [];
+		}
+
 		return this.providePackageDeclarationCompletionItems(editor, document, position, token, context);
 	},
 	
@@ -29,7 +34,22 @@ export const packageDeclCompletionProvider = {
 
 		const packageDecl = makePackageDeclaration(relativePath);
 		return [new vscode.CompletionItem(packageDecl, vscode.CompletionItemKind.Module)];
-	}
+	},
+
+	alreadyHasPackageDeclaration(document: vscode.TextDocument, relativePath: string): boolean {
+		const packageName = makePackageName(relativePath)
+		const packageDeclRegexp = new RegExp(`^package\\s+${packageName}\\s*;`);
+		const maxLine = Math.min(this.maximumPackageDeclarationCompletionLine, document.lineCount - 1);
+
+		for (let i = 0; i <= maxLine; i++) {
+			const lineText = document.getText(document.lineAt(i).range);
+			if (packageDeclRegexp.test(lineText)) {
+				return true;
+			}
+		}
+
+		return false;
+	},
 };
 
 export const packageNameCompletionProvider = {
