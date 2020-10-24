@@ -4,18 +4,25 @@ import { currentFileRelativePath } from './helper';
 import { makePackageDeclaration, makePackageName } from './path-to-package';
 
 export const packageDeclCompletionProvider = {
+	// 0-index
+	maximumPackageDeclarationCompletionLine: 2,
+
 	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): vscode.CompletionItem[] | undefined {
 		const editor = vscode.window.activeTextEditor;
 		if (editor === undefined) {
 			return [];
 		}
 
-		const lineText = document.lineAt(position.line).text;
-		if (/^packa/.test(lineText)) {
-			return this.providePackageDeclarationCompletionItems(editor, document, position, token, context);
+		if (position.line > this.maximumPackageDeclarationCompletionLine) {
+			return [];
 		}
-		
-		return [];
+
+		const relativePath = currentFileRelativePath(editor);
+		if (this.alreadyHasPackageDeclaration(document, relativePath)) {
+			return [];
+		}
+
+		return this.providePackageDeclarationCompletionItems(editor, document, position, token, context);
 	},
 	
 	providePackageDeclarationCompletionItems(editor: vscode.TextEditor, document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): vscode.CompletionItem[] | undefined {
@@ -27,7 +34,22 @@ export const packageDeclCompletionProvider = {
 
 		const packageDecl = makePackageDeclaration(relativePath);
 		return [new vscode.CompletionItem(packageDecl, vscode.CompletionItemKind.Module)];
-	}
+	},
+
+	alreadyHasPackageDeclaration(document: vscode.TextDocument, relativePath: string): boolean {
+		const packageName = makePackageName(relativePath)
+		const packageDeclRegexp = new RegExp(`^package\\s+${packageName}\\s*;`);
+		const maxLine = Math.min(this.maximumPackageDeclarationCompletionLine, document.lineCount - 1);
+
+		for (let i = 0; i <= maxLine; i++) {
+			const lineText = document.getText(document.lineAt(i).range);
+			if (packageDeclRegexp.test(lineText)) {
+				return true;
+			}
+		}
+
+		return false;
+	},
 };
 
 export const packageNameCompletionProvider = {
