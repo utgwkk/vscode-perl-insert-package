@@ -32,5 +32,7 @@ jobs:
     - run: yarn install
       if: steps.yarn-cache.outputs.cache-hit != 'true'
 
-    - run: yarn pretest
-    - run: yarn test
+    - run: yarn compile
+    # https://github.com/microsoft/vscode/issues/106569
+    # - run: yarn pretest
+    # - run: yarn test
