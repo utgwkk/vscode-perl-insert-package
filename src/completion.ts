@@ -29,3 +29,9 @@ export const packageDeclCompletionProvider = {
 	}
 };
 
+export const packageNameCompletionProvider = {
+	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): vscode.CompletionItem[] | undefined {
+		// TODO
+		return [];
+	},
+};

@@ -3,7 +3,7 @@
 import * as vscode from 'vscode';
 import { insertPackageDecl, insertPackageName, insertCurrentPackageName } from './command';
 import { refreshPerlFileList } from "./filelist";
-import { packageDeclCompletionProvider } from './completion';
+import { packageDeclCompletionProvider, packageNameCompletionProvider } from './completion';
 
 const perlSelector = { scheme: 'file', language: 'perl' };
 
@@ -17,6 +17,7 @@ export function activate(context: vscode.ExtensionContext): void {
 
 	const disposables = [
 		vscode.languages.registerCompletionItemProvider(perlSelector, packageDeclCompletionProvider, 'packagedecl'),
+		vscode.languages.registerCompletionItemProvider(perlSelector, packageNameCompletionProvider),
 		vscode.commands.registerTextEditorCommand('perl-insert-package.insertPackageDecl', insertPackageDecl),
 		vscode.commands.registerCommand('perl-insert-package.insertPackageName', insertPackageName),
 		vscode.commands.registerTextEditorCommand('perl-insert-package.insertCurrentPackageName', insertCurrentPackageName),
