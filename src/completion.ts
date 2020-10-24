@@ -4,18 +4,20 @@ import { currentFileRelativePath } from './helper';
 import { makePackageDeclaration, makePackageName } from './path-to-package';
 
 export const packageDeclCompletionProvider = {
+	// 0-index
+	maximumPackageDeclarationCompletionLine: 2,
+
 	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): vscode.CompletionItem[] | undefined {
 		const editor = vscode.window.activeTextEditor;
 		if (editor === undefined) {
 			return [];
 		}
 
-		const lineText = document.lineAt(position.line).text;
-		if (/^packa/.test(lineText)) {
-			return this.providePackageDeclarationCompletionItems(editor, document, position, token, context);
+		if (position.line > this.maximumPackageDeclarationCompletionLine) {
+			return [];
 		}
 
-		return [];
+		return this.providePackageDeclarationCompletionItems(editor, document, position, token, context);
 	},
 	
 	providePackageDeclarationCompletionItems(editor: vscode.TextEditor, document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): vscode.CompletionItem[] | undefined {
