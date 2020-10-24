@@ -1,5 +1,6 @@
 import * as stable from "stable";
 import * as vscode from 'vscode';
+import { getCachedFiles, sortCachedFilesByRecentlyUsed } from "./filelist";
 import { currentFileRelativePath } from './helper';
 import { makePackageDeclaration, makePackageName } from './path-to-package';
 
@@ -27,20 +28,6 @@ export function insertCurrentPackageName(editor: vscode.TextEditor, editBuilder:
 	editor.selections.forEach(selection => {
 		editBuilder.insert(selection.start, packageName);
 	});
-}
-
-let cachedFiles: vscode.Uri[];
-
-function getCachedFiles(): vscode.Uri[] {
-	return cachedFiles;
-}
-
-export async function refreshPerlFileList(): Promise<void> {
-	cachedFiles = await vscode.workspace.findFiles('**/**.pm');
-}
-
-function sortCachedFilesByRecentlyUsed(packagePath: string): void {
-	stable.inplace(cachedFiles, (_, b) => vscode.workspace.asRelativePath(b) === packagePath);
 }
 
 const usePattern = /use\s+(?<packageName>([a-zA-Z0-9_]+)(::[a-zA-Z0-9_]+)+);/;
