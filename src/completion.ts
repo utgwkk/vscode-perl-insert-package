@@ -14,7 +14,7 @@ export const packageDeclCompletionProvider = {
 		if (/^packa/.test(lineText)) {
 			return this.providePackageDeclarationCompletionItems(editor, document, position, token, context);
 		}
-		
+
 		return [];
 	},
 	
