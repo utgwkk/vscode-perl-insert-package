@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
+import { getCachedFiles } from './filelist';
 import { currentFileRelativePath } from './helper';
-import { makePackageDeclaration } from './path-to-package';
+import { makePackageDeclaration, makePackageName } from './path-to-package';
 
 export const packageDeclCompletionProvider = {
 	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): vscode.CompletionItem[] | undefined {
@@ -31,7 +32,10 @@ export const packageDeclCompletionProvider = {
 
 export const packageNameCompletionProvider = {
 	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): vscode.CompletionItem[] | undefined {
-		// TODO
-		return [];
+		return getCachedFiles().map((url) => {
+			const relativePath = vscode.workspace.asRelativePath(url);
+			const packageName = makePackageName(relativePath);
+			return new vscode.CompletionItem(packageName, vscode.CompletionItemKind.Class);
+		});
 	},
 };
