@@ -16,8 +16,8 @@ export function activate(context: vscode.ExtensionContext): void {
 	fsWatcher.onDidDelete(() => refreshPerlFileList());
 
 	const disposables = [
-		vscode.languages.registerCompletionItemProvider(perlSelector, packageDeclCompletionProvider, 'packagedecl'),
-		vscode.languages.registerCompletionItemProvider(perlSelector, packageNameCompletionProvider),
+		vscode.languages.registerCompletionItemProvider(perlSelector, packageDeclCompletionProvider, 'p'),
+		vscode.languages.registerCompletionItemProvider(perlSelector, packageNameCompletionProvider, '.'),
 		vscode.commands.registerTextEditorCommand('perl-insert-package.insertPackageDecl', insertPackageDecl),
 		vscode.commands.registerCommand('perl-insert-package.insertPackageName', insertPackageName),
 		vscode.commands.registerTextEditorCommand('perl-insert-package.insertCurrentPackageName', insertCurrentPackageName),
