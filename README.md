@@ -12,9 +12,15 @@
 
 ![screenshot](https://i.gyazo.com/32c4dfcf6ec3bf3a39530fa35b6cab66.gif)
 
-### Insert package name for Perl with QuickPick
+### Insert package name for Perl 
 
-![insert package name](https://i.gyazo.com/b47345d53a0a142582e3f174a73235fe.gif)
+#### QuickPick
+
+![insert package name with QuickPick](https://i.gyazo.com/b47345d53a0a142582e3f174a73235fe.gif)
+
+#### Completion
+
+![Package name completion](https://i.gyazo.com/5b0cbea7f4af0aae00f9c75cd4bb1eba.gif)]
 
 ## Requirements
 
