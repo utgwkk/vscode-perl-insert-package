@@ -4,6 +4,11 @@ All notable changes to the "perl-insert-package" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.10.1
+
+- Completion for `package` declaration is triggered up to first 3 lines of Perl program.
+- If Perl program already has a `package` declaration, completion for `package` declaration is not triggered.
+
 ## 1.10.0
 
 - Add a completion for package name. (new feature)
