@@ -54,6 +54,12 @@ export const packageDeclCompletionProvider = {
 
 export const packageNameCompletionProvider = {
 	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): vscode.CompletionItem[] | undefined {
+		const config = vscode.workspace.getConfiguration('perl-insert-package');
+		const enabled = config.get<boolean>("packageNameCompletion.enabled");
+		if (!enabled) {
+			return;
+		}
+
 		return getCachedFiles().map((url) => {
 			const relativePath = vscode.workspace.asRelativePath(url);
 			const packageName = makePackageName(relativePath);

@@ -52,3 +52,7 @@ eg: `"{{package}}"`
 #### `separator`
 
 A delimiter that is converted to `::`. If omitted, default value `/` is used.
+
+### `perl-insert-package.packageNameCompletion.enabled`
+
+Whether package name completion is enabled. Default value is `false` (disabled).
