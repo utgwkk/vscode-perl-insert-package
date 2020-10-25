@@ -61,6 +61,11 @@
 						}
 					],
 					"descrption": "Translation rules from file path to Perl package."
+				},
+				"perl-insert-package.packageNameCompletion.enabled": {
+					"type": "boolean",
+					"default": false,
+					"description": "Controls whether package name completion is enabled."
 				}
 			}
 		}
