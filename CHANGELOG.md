@@ -4,6 +4,12 @@ All notable changes to the "perl-insert-package" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.10.2
+
+- Make package name completion experimental.
+- Make package name completion disabled by default.
+  - Package name completion overrides all completion candidates. It was very inconvenient so I decided making disabled it by default.
+
 ## 1.10.1
 
 - Completion for `package` declaration is triggered up to first 3 lines of Perl program.
