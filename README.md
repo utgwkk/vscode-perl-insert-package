@@ -18,7 +18,7 @@
 
 ![insert package name with QuickPick](https://i.gyazo.com/b47345d53a0a142582e3f174a73235fe.gif)
 
-#### Completion
+#### (EXPERIMENTAL) Completion
 
 ![Package name completion](https://i.gyazo.com/5b0cbea7f4af0aae00f9c75cd4bb1eba.gif)]
 
