@@ -8,14 +8,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Get Node.JS version from .node-version
-      id: get-node-version
-      run: |
-        echo "::set-output name=version::$(cat .node-version)"
-
     - uses: actions/setup-node@v3
       with:
-        node-version: ${{ steps.get-node-version.outputs.version }}
+        node-version-file: .node-version
 
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
